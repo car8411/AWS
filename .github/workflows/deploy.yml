@@ -28,12 +28,13 @@ jobs:
 
     # 종속성 설치 (npm install)
     - name: Install dependencies
+      working-directory: ./frontend # package.json이 있는 경로로 수정
       run: |
         npm install
 
     # 빌드 과정 추가
     - name: Build the project
-      working-directory: ./frontend # package.json이 위치한 경로로 수정
+      working-directory: ./frontend # package.json이 있는 경로로 수정
       run: |
         npm run build
 
