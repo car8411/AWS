@@ -22,6 +22,10 @@ jobs:
       run: |
         scp -i ~/.ssh/jihuncha.pem -r * ec2-user@54.159.220.38:/var/www/html/
         ssh -i ~/.ssh/jihuncha.pem ec2-user@y54.159.220.38 "sudo systemctl restart nginx"
+ 
+    - name: Create .ssh directory
+      run: mkdir -p ~/.ssh
+
 
     env:
       SSH_KEY: ${{ secrets.SSH_KEY }}
