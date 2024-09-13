@@ -13,15 +13,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
+    - name: Decode SSH key
+      run: |
+        echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
+        chmod 600 ~/.ssh/jihuncha.pem
 
     - name: Deploy to EC2
       run: |
-        scp -i ~/.ssh/C:\Users\car84\pem.jihuncha.pem -r * ec2-user@your-ec2-public-ip:/var/www/html/
-        ssh -i ~/.ssh/YOUR_SSH_KEY ec2-user@54.159.220.38 "sudo systemctl restart nginx"
+        scp -i ~/.ssh/jihuncha.pem -r * ec2-user@your-ec2-public-ip:/var/www/html/
+        ssh -i ~/.ssh/jihuncha.pem ec2-user@your-ec2-public-ip "sudo systemctl restart nginx"
+
+    env:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
