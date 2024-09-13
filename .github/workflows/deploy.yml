@@ -26,6 +26,13 @@ jobs:
         echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
         chmod 600 ~/.ssh/jihuncha.pem
 
+
+    - name: Add EC2 to known hosts
+      run: |
+          ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
+
+
+
     - name: Deploy to EC2
       run: |
         scp -i ~/.ssh/jihuncha.pem -r * ec2-user@54.159.220.38:/var/www/html/
