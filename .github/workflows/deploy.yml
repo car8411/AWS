@@ -31,11 +31,10 @@ jobs:
       run: |
           ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
 
-
-
     - name: Deploy to EC2
       run: |
         scp -i ~/.ssh/jihuncha.pem -r * ec2-user@54.159.220.38:/var/www/html/
         ssh -i ~/.ssh/jihuncha.pem ec2-user@54.159.220.38 "sudo systemctl restart nginx"
 
 
+#.#
