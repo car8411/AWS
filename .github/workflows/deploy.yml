@@ -26,8 +26,9 @@ jobs:
         echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
         chmod 600 ~/.ssh/jihuncha.pem
 
-    # 빌드 과정 추가
+   # 프로젝트가 있는 디렉토리로 이동 (필요한 경로에 맞게 수정)
     - name: Build the project
+      working-directory: ./frontend # package.json이 위치한 경로로 수정
       run: |
         npm run build
 
