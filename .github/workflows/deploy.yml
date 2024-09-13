@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -28,8 +31,4 @@ jobs:
         scp -i ~/.ssh/jihuncha.pem -r * ec2-user@54.159.220.38:/var/www/html/
         ssh -i ~/.ssh/jihuncha.pem ec2-user@54.159.220.38 "sudo systemctl restart nginx"
 
-    env:
-      SSH_KEY: ${{ secrets.SSH_KEY }}
 
-      ##..#
-      
