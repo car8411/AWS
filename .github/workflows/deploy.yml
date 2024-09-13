@@ -26,9 +26,10 @@ jobs:
         echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
         chmod 600 ~/.ssh/jihuncha.pem
 
-    # 프로젝트가 있는 디렉토리로 이동 (필요한 경로에 맞게 수정)
-    - name: Set executable permissions for react-scripts
-      run: chmod +x ./node_modules/.bin/react-scripts
+    # 프로젝트 종속성 설치 (npm install)
+    - name: Install dependencies
+      run: |
+        npm install
 
     # 빌드 과정 추가
     - name: Build the project
