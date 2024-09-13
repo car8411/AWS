@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
+
 function App() {
   const [name, setName] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
@@ -10,7 +11,7 @@ function App() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/save-data', { id: '1', name });
+      const response = await axios.post('http://54.159.220.38:3001/save-data', { id: '1', name });
       setResponseMessage(response.data.message);
     } catch (error) {
       setResponseMessage('Error saving data');

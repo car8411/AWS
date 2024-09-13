@@ -2,11 +2,19 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb'); // AWS SDK v3
-
 const app = express();
 
-app.use(cors());
+app.get('/', (req, res) => {
+  res.send('Hello, World! Server is running.');
+});
+
+app.use(cors({
+  origin: '*',  // 실제 배포된 도메인으로 변경
+}));
+
 app.use(bodyParser.json());
+app.use(express.static('public'));  // public 폴더에서 정적 파일 제공
+
 
 // Initialize DynamoDB client (AWS SDK v3)
 const client = new DynamoDBClient({ region: 'us-east-1' });

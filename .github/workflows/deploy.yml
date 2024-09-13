@@ -20,8 +20,8 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        scp -i ~/.ssh/jihuncha.pem -r * ec2-user@your-ec2-public-ip:/var/www/html/
-        ssh -i ~/.ssh/jihuncha.pem ec2-user@your-ec2-public-ip "sudo systemctl restart nginx"
+        scp -i ~/.ssh/jihuncha.pem -r * ec2-user@54.159.220.38:/var/www/html/
+        ssh -i ~/.ssh/jihuncha.pem ec2-user@y54.159.220.38 "sudo systemctl restart nginx"
 
     env:
       SSH_KEY: ${{ secrets.SSH_KEY }}
