@@ -26,7 +26,11 @@ jobs:
         echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
         chmod 600 ~/.ssh/jihuncha.pem
 
-   # 프로젝트가 있는 디렉토리로 이동 (필요한 경로에 맞게 수정)
+    # 프로젝트가 있는 디렉토리로 이동 (필요한 경로에 맞게 수정)
+    - name: Set executable permissions for react-scripts
+      run: chmod +x ./node_modules/.bin/react-scripts
+
+    # 빌드 과정 추가
     - name: Build the project
       working-directory: ./frontend # package.json이 위치한 경로로 수정
       run: |
@@ -35,7 +39,7 @@ jobs:
     # Add EC2 to known hosts
     - name: Add EC2 to known hosts
       run: |
-          ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
+        ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
 
     # 빌드된 파일을 EC2에 배포
     - name: Deploy to EC2
