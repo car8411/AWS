@@ -1,4 +1,4 @@
-name: Deploy to AWS Lambda
+name: Deploy to EC2
 
 on:
   push:
@@ -21,5 +21,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Zip and deploy to Lambda
-      run: ./deploy.sh
+    - name: Deploy to EC2
+      run: |
+        scp -i ~/.ssh/C:\Users\car84\pem.jihuncha.pem -r * ec2-user@your-ec2-public-ip:/var/www/html/
+        ssh -i ~/.ssh/YOUR_SSH_KEY ec2-user@54.159.220.38 "sudo systemctl restart nginx"
