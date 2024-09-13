@@ -26,10 +26,10 @@ jobs:
         echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
         chmod 600 ~/.ssh/jihuncha.pem
 
-    # NPM 캐시 무효화 및 종속성 설치
-    - name: Install dependencies with npm ci
+    # 종속성 설치 (npm install)
+    - name: Install dependencies
       run: |
-        npm ci
+        npm install
 
     # 빌드 과정 추가
     - name: Build the project
