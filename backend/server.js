@@ -1,23 +1,29 @@
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb'); // AWS SDK v3
+
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello, World! Server is running.');
-});
+// SSL 인증서 및 프라이빗 키 경로
+const sslOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/jihunchja.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/jihunchja.com/fullchain.pem')
+};
 
+// Initialize DynamoDB client (AWS SDK v3)
+const client = new DynamoDBClient({ region: 'us-east-1' });
+
+// CORS 설정
 app.use(cors({
   origin: '*',  // 실제 배포된 도메인으로 변경
 }));
 
+// BodyParser 설정
 app.use(bodyParser.json());
 app.use(express.static('public'));  // public 폴더에서 정적 파일 제공
-
-
-// Initialize DynamoDB client (AWS SDK v3)
-const client = new DynamoDBClient({ region: 'us-east-1' });
 
 // API Route to save data
 app.post('/save-data', async (req, res) => {
@@ -36,12 +42,13 @@ app.post('/save-data', async (req, res) => {
     await client.send(command);
     res.json({ message: 'Data saved successfully!' });
   } catch (error) {
-    console.error('Error saving dataddd:', error);
+    console.error('Error saving data:', error);
     res.status(500).json({ error: 'Could not save data' });
   }
 });
 
+// HTTPS 서버 시작
 const port = process.env.PORT || 3001;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+https.createServer(sslOptions, app).listen(port, () => {
+  console.log(`HTTPS Server running on port ${port}`);
 });

@@ -11,7 +11,7 @@ function App() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://54.159.220.38:3001/save-data', { id: '1', name });
+      const response = await axios.post('https://jihunchja.com:3001/save-data', { id: '1', name });
       setResponseMessage(response.data.message);
     } catch (error) {
       setResponseMessage('Error saving data');
