@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy to S3
 
 on:
   push:
@@ -9,45 +9,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      SSH_KEY: ${{ secrets.SSH_KEY }}
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Create .ssh directory and set permissions
-      run: |
-        mkdir -p ~/.ssh
-        chmod 700 ~/.ssh
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # 원하는 Node.js 버전
 
-    - name: Decode SSH key and set permissions
-      run: |
-        echo "$SSH_KEY" | base64 --decode > ~/.ssh/jihuncha.pem
-        chmod 600 ~/.ssh/jihuncha.pem
-
-    # 종속성 설치 (npm install)
     - name: Install dependencies
       working-directory: ./frontend
       run: npm install
 
-    # 실행 권한 부여
-    - name: Set executable permissions for react-scripts
-      working-directory: ./frontend
-      run: chmod +x ./node_modules/.bin/react-scripts
-
-    # 빌드 과정 추가
     - name: Build the project
       working-directory: ./frontend
       run: npm run build
 
-    # Add EC2 to known hosts
-    - name: Add EC2 to known hosts
-      run: ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
-
-    # 배포 및 Nginx 재시작
-    - name: Deploy to EC2
-      run: |
-        set -e  # 에러 발생 시 스크립트 종료
-        scp -i ~/.ssh/jihuncha.pem -r ./frontend/build/* ec2-user@54.159.220.38:/var/www/html/
-        ssh -i ~/.ssh/jihuncha.pem ec2-user@54.159.220.38 "sudo systemctl restart nginx"
+    - name: Deploy to S3
+      uses: jakejarvis/s3-sync-action@0.5.2
+      with:
+        args: --acl public-read --delete  # 퍼블릭 읽기 권한 및 삭제 플래그
+      env:
+        AWS_S3_BUCKET: ${{ jihunchja.com }}  # S3 버킷 이름
+        AWS_ACCESS_KEY_ID: ${{ AKIAUGNBX3AXSITAI5OL }}  # AWS Access Key
+        AWS_SECRET_ACCESS_KEY: ${{ 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 }}  # AWS Secret Key
+        SOURCE_DIR: './frontend/build'  # 빌드된 파일이 위치한 디렉토리
