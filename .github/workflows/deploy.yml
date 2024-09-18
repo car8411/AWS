@@ -28,29 +28,26 @@ jobs:
 
     # 종속성 설치 (npm install)
     - name: Install dependencies
-      working-directory: ./frontend  # 'package.json'이 있는 'frontend' 경로
-      run: |
-        npm install
+      working-directory: ./frontend
+      run: npm install
 
     # 실행 권한 부여
     - name: Set executable permissions for react-scripts
-      working-directory: ./frontend  # 'node_modules'가 있는 'frontend' 경로
-      run: |
-        chmod +x ./node_modules/.bin/react-scripts
+      working-directory: ./frontend
+      run: chmod +x ./node_modules/.bin/react-scripts
 
     # 빌드 과정 추가
     - name: Build the project
-      working-directory: ./frontend  # 'frontend' 경로에서 빌드
-      run: |
-        npm run build
+      working-directory: ./frontend
+      run: npm run build
 
     # Add EC2 to known hosts
     - name: Add EC2 to known hosts
-      run: |
-        ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
+      run: ssh-keyscan -H 54.159.220.38 >> ~/.ssh/known_hosts
 
-    # 빌드된 파일을 EC2에 배포
+    # 배포 및 Nginx 재시작
     - name: Deploy to EC2
       run: |
+        set -e  # 에러 발생 시 스크립트 종료
         scp -i ~/.ssh/jihuncha.pem -r ./frontend/build/* ec2-user@54.159.220.38:/var/www/html/
         ssh -i ~/.ssh/jihuncha.pem ec2-user@54.159.220.38 "sudo systemctl restart nginx"
