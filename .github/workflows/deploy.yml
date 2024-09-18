@@ -10,28 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'  # 원하는 Node.js 버전
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # 원하는 Node.js 버전
 
-    - name: Install dependencies
-      working-directory: ./frontend
-      run: npm install
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm install
 
-    - name: Build the project
-      working-directory: ./frontend
-      run: npm run build
+      - name: Build the project
+        working-directory: ./frontend
+        run: npm run build
 
-    - name: Deploy to S3
-      uses: jakejarvis/s3-sync-action@0.5.2
-      with:
-        args: --acl public-read --delete  # 퍼블릭 읽기 권한 및 삭제 플래그
-      env:
-        AWS_S3_BUCKET: ${{ jihunchja.com }}  # S3 버킷 이름
-        AWS_ACCESS_KEY_ID: ${{ AKIAUGNBX3AXSITAI5OL }}  # AWS Access Key
-        AWS_SECRET_ACCESS_KEY: ${{ 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 }}  # AWS Secret Key
-        SOURCE_DIR: './frontend/build'  # 빌드된 파일이 위치한 디렉토리
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # S3 버킷이 위치한 리전
+
+      - name: Sync S3 bucket
+        run: |
+          aws s3 sync ./frontend/build s3://${{ secrets.AWS_S3_BUCKET }} --acl public-read --delete
