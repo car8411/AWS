@@ -22,6 +22,12 @@ app.get('/api', (req, res) => {
   res.send('Welcome to the home page!');
 });
 
+// 루트 경로에 대한 요청 처리
+app.get('/', (req, res) => {
+  res.send('Welcome to the home page!');
+});
+
+
 // API Route to save data
 app.post('/save-data', async (req, res) => {
   const { id, name } = req.body;
