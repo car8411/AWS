@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'; // React Router import
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'; // React Router import
 import './App.css';
 
 const HomePage = () => {
@@ -58,20 +58,19 @@ function App() {
         <header className="App-header">
           <nav>
             <ul>
-              <li><Link to="/">Homdddddde</Link></li>
+              <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>
           </nav>
         </header>
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/contact" component={ContactPage} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
       </div>
     </Router>
   );
 }
-
 export default App;
