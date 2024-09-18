@@ -1,4 +1,3 @@
-const https = require('https');
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
@@ -6,12 +5,6 @@ const bodyParser = require('body-parser');
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb'); // AWS SDK v3
 
 const app = express();
-
-// SSL 인증서 및 프라이빗 키 경로
-const sslOptions = {
-  key: fs.readFileSync('/etc/letsencrypt/live/jihunchja.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/jihunchja.com/fullchain.pem')
-};
 
 // Initialize DynamoDB client (AWS SDK v3)
 const client = new DynamoDBClient({ region: 'us-east-1' });
@@ -47,12 +40,8 @@ app.post('/save-data', async (req, res) => {
   }
 });
 
+// HTTP로 서버 실행
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`HTTP Server running on port ${port}`);
 });
-
-/*const port = process.env.PORT || 3001;
-https.createServer(sslOptions, app).listen(port, () => {
-  console.log(`HTTPS Server running on port ${port}`);
-});*/
