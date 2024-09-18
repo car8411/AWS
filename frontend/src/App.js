@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid'; // UUID 생성 라이브러리 추가
 import './App.css';
-
 
 function App() {
   const [name, setName] = useState('');
@@ -10,8 +10,10 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const id = uuidv4(); // 고유한 ID 생성
+
     try {
-      const response = await axios.post('https://jihunchja.com/save-data', { id: '1', name });
+      const response = await axios.post('https://jihunchja.com/save-data', { id, name });
       setResponseMessage(response.data.message);
     } catch (error) {
       setResponseMessage('Error saving data');
@@ -28,13 +30,9 @@ function App() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Name"
           />
-          <button type="submit">Submiwwwwwwwwwwwwwwwt</button>
+          <button type="submit">Submit</button>
         </form>
-        <h1>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</h1>
-        <h2>sssssssss</h2>
-        <h3>SSSSSSSSSSSSSSSSSSS</h3>
-        <h4>ddddddddddddddd</h4>
-        <p>{responseMessage}</p>        
+        <p>{responseMessage}</p>
       </header>
     </div>
   );
