@@ -47,8 +47,12 @@ app.post('/save-data', async (req, res) => {
   }
 });
 
-// HTTPS 서버 시작
 const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`HTTP Server running on port ${port}`);
+});
+
+/*const port = process.env.PORT || 3001;
 https.createServer(sslOptions, app).listen(port, () => {
   console.log(`HTTPS Server running on port ${port}`);
-});
+});*/
