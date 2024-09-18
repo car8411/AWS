@@ -15,18 +15,16 @@ app.use(cors({
 
 // BodyParser 설정
 app.use(bodyParser.json());
-app.use(express.static('public'));  // public 폴더에서 정적 파일 제공
+/*app.use(express.static('public'));  // public 폴더에서 정적 파일 제공*/
 
 // 루트 경로에 대한 요청 처리
 app.get('/api', (req, res) => {
   res.send('Welcome to the home page!');
 });
 
-// 루트 경로에 대한 요청 처리
-app.get('/', (req, res) => {
-  res.send('Welcome to the home page!');
+app.get('/save-data', (req, res) => {
+  res.send('Welcome database');
 });
-
 
 // API Route to save data
 app.post('/save-data', async (req, res) => {
