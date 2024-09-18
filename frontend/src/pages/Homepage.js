@@ -1,6 +1,6 @@
 // src/pages/HomePage.js
 import React from 'react';
-import Form from '../components/Form';
+import Form from '../components/Form'; // 올바른 경로
 
 const HomePage = () => {
   return (
