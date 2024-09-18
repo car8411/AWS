@@ -22,8 +22,8 @@ app.get('/api', (req, res) => {
   res.send('Welcome to the home page!');
 });
 
-app.get('/save-data', (req, res) => {
-  res.send('Welcome database');
+app.get('/', (req, res) => {
+  res.send('Welcome to the home page!');
 });
 
 // API Route to save data
