@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'; // React Router import
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'; 
 import './App.css';
 
 const HomePage = () => {
@@ -22,7 +22,8 @@ const HomePage = () => {
 
   return (
     <div>
-      <h2>Home Pagdddddddddddddde</h2>
+      <h2>Home Page</h2>
+      <p>Welcome to the home page! Please enter your name below.</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -40,14 +41,14 @@ const HomePage = () => {
 const AboutPage = () => (
   <div>
     <h2>About Page</h2>
-    <p>This is the about page where you can learn more about us.</p>
+    <p>This page provides information about our project and goals.</p>
   </div>
 );
 
 const ContactPage = () => (
   <div>
     <h2>Contact Page</h2>
-    <p>This is the contact page where you can reach us.</p>
+    <p>Feel free to reach out to us through the contact form below.</p>
   </div>
 );
 
@@ -75,4 +76,5 @@ function App() {
     </Router>
   );
 }
+
 export default App;

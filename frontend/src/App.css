@@ -1,19 +1,24 @@
-.App-header {
-  background-color: #282c34;
-  min-height: 70vh; /* 상단 공간을 줄이기 위해 높이 조정 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 20px; /* 여백 추가 */
+nav {
+  margin: 20px 0;
 }
 
-.content {
-  min-height: 30vh; /* 아래 콘텐츠 영역 높이 조정 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* 콘텐츠 상단 정렬 */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #61dafb;
+  font-weight: bold; /* 강조 */
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #21a1f1; /* 마우스 오버 색상 변경 */
 }
