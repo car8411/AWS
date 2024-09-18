@@ -64,11 +64,13 @@ function App() {
             </ul>
           </nav>
         </header>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
