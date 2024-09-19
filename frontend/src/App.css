@@ -22,3 +22,19 @@ nav a:hover {
   text-decoration: underline;
   color: #21a1f1; /* 마우스 오버 색상 변경 */
 }
+/* src/App.css */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #ff7e5f, #feb47b); /* 예쁜 그라데이션 배경 */
+  font-family: 'Arial', sans-serif;
+  color: orange;
+}
+
+.App {
+  text-align: center;
+}
+
+.content {
+  padding: 20px;
+}
