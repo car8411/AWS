@@ -1,17 +1,10 @@
 import React from 'react';
-import PayPalCheckout from '../components/PayPalCheckout';
 
 const ProductDetail = () => {
-  const product = {
-    name: "Sample Product",
-    price: "19.99"
-  };
-
   return (
     <div>
-      <h2>{product.name}</h2>
-      <p>Price: ${product.price}</p>
-      <PayPalCheckout amount={product.price} />
+      <h2>Product Detail</h2>
+      <p>여기에 제품 세부 정보를 추가할 수 있습니다.</p>
     </div>
   );
 };

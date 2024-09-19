@@ -20,7 +20,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* ProductDetail 페이지에서만 PayPal 결제 기능 노출 */}
-            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/product" element={<ProductDetail />} />
           </Routes>
         </div>
         <Footer />
