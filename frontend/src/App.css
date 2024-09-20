@@ -33,8 +33,36 @@ body {
 
 .App {
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .content {
   padding: 20px;
+}
+
+
+
+
+
+/* Adjust layout for mobile devices */
+@media only screen and (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  .Navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  /* Adjust header, footer, and other elements as needed */
+  Header, Footer {
+    font-size: 14px; /* Make text smaller */
+  }
 }
