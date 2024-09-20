@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css';  // CSS 파일을 가져옵니다.
 import React, { useState } from 'react';
-import Popup from './components/Popup';
+import Popup from './Popup';
 
 const Header = () => {
 

@@ -26,7 +26,7 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/product" element={<ProductDetail />} />
             <Route path="/upload" element={<UploadPage />} />
-          <Route path="/locations/:locationId" element={<LocationPage />} />
+            <Route path="/locations/:locationId" element={<LocationPage />} />
           </Routes>
         </div>
         <Footer />
