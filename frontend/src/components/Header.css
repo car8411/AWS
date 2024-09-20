@@ -1,27 +1,26 @@
 /* src/components/Header.css */
 
-/* 헤더를 상단에 고정 */
 .App-header {
-  position: fixed;  /* 고정 위치 */
-  top: 0;           /* 화면의 상단에 위치 */
-  left: 0;          /* 왼쪽에 맞추기 */
-  width: 100%;      /* 화면 전체 너비 차지 */
   background-color: #333;
   padding: 1rem;
-  z-index: 1000;    /* 다른 콘텐츠보다 앞에 오도록 설정 */
-  box-shadow: 0 4px 2px -2px gray; /* 살짝 그림자 추가 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 2px -2px gray;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-around;  /* 네비게이션 링크를 균등 배치 */
+  justify-content: space-around;
   align-items: center;
 }
 
 .navbar ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   display: flex;
 }
 
@@ -39,7 +38,44 @@
   text-decoration: underline;
 }
 
-/* 스크롤 할 때 메인 콘텐츠가 헤더와 겹치지 않도록 여백 추가 */
-body {
-  margin-top: 70px;  /* 헤더 높이만큼 상단 여백을 추가 */
+/* 드롭다운 스타일 */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.dropdown-btn:hover {
+  text-decoration: underline;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #333;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-content li {
+  margin: 0;
+}
+
+.dropdown-content a {
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #575757;
 }
