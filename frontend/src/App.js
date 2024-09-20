@@ -8,6 +8,7 @@ import HomePage from './pages/HomePages';
 import ProductDetail from './pages/ProductDetail';
 /*import PayPalCheckout from './components/PayPalCheckout'; // PayPal 관련 코드 분리*/
 import './App.css';
+import UploadPage from "./pages/UploadPage";
 
 function App() {
   return (
@@ -20,9 +21,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/product" element={<ProductDetail />} />
+            <Route path="/upload" element={<UploadPage />} />
           </Routes>
-          <h1>sssssssss
-          </h1>
         </div>
         <Footer />
       </div>
