@@ -9,6 +9,8 @@ import ProductDetail from './pages/ProductDetail';
 /*import PayPalCheckout from './components/PayPalCheckout'; // PayPal 관련 코드 분리*/
 import './App.css';
 import UploadPage from "./pages/UploadPage";
+import Navbar from './components/Navbar';
+import LocationPage from './pages/LocationPage';
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/product" element={<ProductDetail />} />
             <Route path="/upload" element={<UploadPage />} />
+            <Navbar />
+          <Route path="/locations/:locationId" element={<LocationPage />} />
+        
           </Routes>
         </div>
         <Footer />
