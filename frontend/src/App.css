@@ -28,8 +28,8 @@ body {
   padding: 0;
   background: linear-gradient(to right, #ff7e5f, #feb47b); /* 예쁜 그라데이션 배경 */
   font-family: 'Arial', sans-serif;
-  color: orange;
-}
+  color: black;
+} 
 
 .App {
   text-align: center;
