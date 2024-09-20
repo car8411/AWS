@@ -1,40 +1,45 @@
-nav {
-  margin: 20px 0;
+/* src/components/Header.css */
+
+/* 헤더를 상단에 고정 */
+.App-header {
+  position: fixed;  /* 고정 위치 */
+  top: 0;           /* 화면의 상단에 위치 */
+  left: 0;          /* 왼쪽에 맞추기 */
+  width: 100%;      /* 화면 전체 너비 차지 */
+  background-color: #333;
+  padding: 1rem;
+  z-index: 1000;    /* 다른 콘텐츠보다 앞에 오도록 설정 */
+  box-shadow: 0 4px 2px -2px gray; /* 살짝 그림자 추가 */
 }
 
-nav ul {
-  list-style-type: none;
-  padding: 0;
+.navbar {
+  display: flex;
+  justify-content: space-around;  /* 네비게이션 링크를 균등 배치 */
+  align-items: center;
 }
 
-nav li {
-  display: inline;
-  margin: 0 10px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #61dafb;
-  font-weight: bold; /* 강조 */
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: #21a1f1; /* 마우스 오버 색상 변경 */
-}
-/* src/App.css */
-body {
+.navbar ul {
+  list-style: none;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #ff7e5f, #feb47b); /* 예쁜 그라데이션 배경 */
-  font-family: 'Arial', sans-serif;
-  color: black;
-} 
-
-.App {
-  text-align: center;
+  display: flex;
 }
 
-.content {
-  padding: 20px;
+.navbar li {
+  margin: 0 1rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* 스크롤 할 때 메인 콘텐츠가 헤더와 겹치지 않도록 여백 추가 */
+body {
+  margin-top: 70px;  /* 헤더 높이만큼 상단 여백을 추가 */
 }
