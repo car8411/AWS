@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css';  // CSS 파일을 가져옵니다.
 import React, { useState } from 'react';
-
+import Popup from './components/Popup';
 
 const Header = () => {
 
@@ -12,7 +12,7 @@ const Header = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-
+  const [popupTrigger, setPopupTrigger] = useState(false);
 
   return (
     <header className="App-header">
@@ -33,8 +33,9 @@ const Header = () => {
                 <li><Link to="/locations/new-york">New York</Link></li>
                 <li><Link to="/locations/tokyo">Tokyo</Link></li>
                 <li><Link to="/locations/sydney">Sydney</Link></li>
-              </ul>
-            )}
+              </ul> )}
+              <button onClick={() => setPopupTrigger(true)}>Open Popup</button>
+              <Popup trigger={popupTrigger} setTrigger={setPopupTrigger} />
           </li>
         </ul>
       </nav>
