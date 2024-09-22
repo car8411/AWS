@@ -38,6 +38,8 @@ const Header = () => {
               <Popup trigger={popupTrigger} setTrigger={setPopupTrigger} />
           </li>
         </ul>
+        <li><Link to="/login">login</Link></li>
+
       </nav>
     </header>
   );

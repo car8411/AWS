@@ -11,6 +11,9 @@ import './App.css';
 import UploadPage from "./pages/UploadPage";
 import Navbar from './components/Navbar';
 import LocationPage from './pages/LocationPage';
+import LoginPage from './pages/LoginPage';
+
+
 
 function App() {
 
@@ -27,6 +30,7 @@ function App() {
             <Route path="/product" element={<ProductDetail />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/locations/:locationId" element={<LocationPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </div>
         <Footer />
