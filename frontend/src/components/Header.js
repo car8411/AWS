@@ -30,7 +30,6 @@ const Header = () => {
                 <li><Link to="/locations/tokyo">Tokyo</Link></li>
                 <li><Link to="/locations/sydney">Sydney</Link></li>
               </ul> )}
-              <button onClick={() => setPopupTrigger(true)}>Open Popup</button>
           </li>
         </ul>
         <li><Link to="/login">login</Link></li>
