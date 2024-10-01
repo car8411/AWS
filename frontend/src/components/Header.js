@@ -11,8 +11,6 @@ const Header = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  const [popupTrigger, setPopupTrigger] = useState(false);
-
   return (
     <header className="App-header">
       <nav className="navbar">
