@@ -1,68 +1,108 @@
-nav {
-  margin: 20px 0;
+/* General layout for the header and navigation */
+.App-header {
+  background-color: grey;
+  padding: 0.5rem 1rem; /* 적절한 상하 패딩 설정 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* 로고와 내비게이션을 양쪽에 배치 */
+  align-items: center;
+  height: auto;
+}
+
+.App-header .logo {
+  margin-right: auto;
+}
+
+.App-header nav {
+  display: flex;
+  gap: 1.5rem; /* 내비게이션 항목들 간의 간격 설정 */
+}
+
+/* Navigation links */
+.App-header nav a, .App-header nav button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem; /* 버튼과 링크의 패딩을 통일 */
+}
+
+.App-header nav a:hover, .App-header nav button:hover {
+  text-decoration: underline;
+  color: #21a1f1;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  display: flex; /* 모든 항목을 수평으로 나열 */
 }
 
 nav li {
-  display: inline;
   margin: 0 10px;
 }
 
-nav a {
-  text-decoration: none;
-  color: #61dafb;
-  font-weight: bold; /* 강조 */
+/* Location button styling */
+nav button {
+  background-color: #61dafb;
+  color: white;
+  border-radius: 5px;
+  border: none;
 }
 
-nav a:hover {
-  text-decoration: underline;
-  color: #21a1f1; /* 마우스 오버 색상 변경 */
+nav button:hover {
+  background-color: #21a1f1;
 }
-/* src/App.css */
+
+/* Body */
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #ff7e5f, #feb47b); /* 예쁜 그라데이션 배경 */
+  background: linear-gradient(to right, #ffffff, #46423f);
   font-family: 'Arial', sans-serif;
   color: black;
-} 
+}
 
+/* Main content area */
 .App {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  padding-top: 80px;
 }
 
 .content {
   padding: 20px;
 }
 
-
-
-
-
-/* Adjust layout for mobile devices */
+/* Responsive adjustments for mobile devices */
 @media only screen and (max-width: 768px) {
-  .App {
-    padding: 10px;
+  .App-header {
+    flex-direction: column; /* 모바일에서는 세로 정렬 */
+    padding: 0.5rem;
   }
 
-  .Navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .App-header nav {
+    margin-top: 10px; /* 로고와 내비게이션 간격 조정 */
+  }
+
+  .App {
+    padding: 10px;
   }
 
   .content {
     padding: 10px;
   }
 
-  /* Adjust header, footer, and other elements as needed */
-  Header, Footer {
-    font-size: 14px; /* Make text smaller */
+  header, footer {
+    font-size: 14px; /* 모바일에서 글자 크기 조정 */
   }
 }

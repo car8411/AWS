@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom';
 import './Header.css';  // CSS 파일을 가져옵니다.
 import React, { useState } from 'react';
-import Popup from './Popup';
 
 const Header = () => {
 
@@ -19,10 +18,9 @@ const Header = () => {
       <nav className="navbar">
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/product">Products</Link></li>
           <li><Link to="/upload">Upload</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/locations">location</Link></li>
           <li className="dropdown">
             <button onClick={handleDropdownToggle} className="dropdown-btn">
               Locations
@@ -35,7 +33,6 @@ const Header = () => {
                 <li><Link to="/locations/sydney">Sydney</Link></li>
               </ul> )}
               <button onClick={() => setPopupTrigger(true)}>Open Popup</button>
-              <Popup trigger={popupTrigger} setTrigger={setPopupTrigger} />
           </li>
         </ul>
         <li><Link to="/login">login</Link></li>
