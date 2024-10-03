@@ -1,15 +1,11 @@
-// src/pages/HomePage.js
 import React from 'react';
 import Form from '../components/Form'; // Make sure this path is correct
 
 const HomePage = () => {
-  // API key
-  const API_KEY = 'bad901f1cd2607e7f157075c025083589';
-
-  // API call function
+  // API call function to get company info via your backend server
   const getCompanyInfo = async () => {
     try {
-      const response = await fetch(`https://opendart.fss.or.kr/api/corpCode.json?crtfc_key=${API_KEY}`);
+      const response = await fetch('/api/company-info'); // Call to your server API
       const data = await response.json();
       console.log(data);
     } catch (error) {
@@ -32,4 +28,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
