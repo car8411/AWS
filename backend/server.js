@@ -34,7 +34,7 @@ const upload = multer({ storage: storage });
 
 // API Route to fetch company info using OpenDART API
 app.get('/api/company-info', async (req, res) => {
-  const API_KEY = '	6a0a970bad901f1cd2607e7f157075c025083589';
+  const API_KEY = '6a0a970bad901f1cd2607e7f157075c025083589';
   try {
     const response = await fetch(`https://opendart.fss.or.kr/api/corpCode.json?crtfc_key=${API_KEY}`);
     if (!response.ok) {
