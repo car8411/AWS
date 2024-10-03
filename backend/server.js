@@ -31,6 +31,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
+// API Route to fetch company info using OpenDART API
+app.get('/api/company-info', async (req, res) => {
+  const API_KEY = '	6a0a970bad901f1cd2607e7f157075c025083589';
+  try {
+    const response = await fetch(`https://opendart.fss.or.kr/api/corpCode.json?crtfc_key=${API_KEY}`);
+    if (!response.ok) {
+      return res.status(response.status).send('Error fetching company info');
+    }
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching company info:', error);
+    res.status(500).json({ error: 'Failed to fetch company info' });
+  }
+});
+
+
 // 정적 파일 제공
 app.use('/uploads', express.static('uploads'));
 
