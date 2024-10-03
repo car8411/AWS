@@ -5,6 +5,8 @@ const multer = require('multer');
 const path = require('path');
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb'); // AWS SDK v3
 const fetch = require('node-fetch');
+const xml2js = require('xml2js');
+const parser = new xml2js.Parser();
 
 const app = express();
 
@@ -31,8 +33,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
-// API Route to fetch company info using OpenDART API
+// API Route to fetch company info using OpenDART API (for XML response)
 app.get('/api/company-info', async (req, res) => {
   const API_KEY = '6a0a970bad901f1cd2607e7f157075c025083589';
   try {
@@ -40,14 +41,21 @@ app.get('/api/company-info', async (req, res) => {
     if (!response.ok) {
       return res.status(response.status).send('Error fetching company info');
     }
-    const data = await response.json();
-    res.json(data);
+    const xmlData = await response.text();
+
+    // XML을 JSON으로 변환
+    parser.parseString(xmlData, (err, result) => {
+      if (err) {
+        console.error('Error parsing XML:', err);
+        return res.status(500).json({ error: 'Failed to parse XML' });
+      }
+      res.json(result);  // JSON 형식으로 응답
+    });
   } catch (error) {
     console.error('Error fetching company info:', error);
     res.status(500).json({ error: 'Failed to fetch company info' });
   }
 });
-
 
 // 정적 파일 제공
 app.use('/uploads', express.static('uploads'));
@@ -55,19 +63,6 @@ app.use('/uploads', express.static('uploads'));
 // 루트 경로에 대한 요청 처리
 app.get('/api', (req, res) => {
   res.send('Welcome to the home page!');
-});
-
-// API Route to fetch company info using OpenDART API
-app.get('/api/company-info', async (req, res) => {
-  const API_KEY = 'bad901f1cd2607e7f157075c025083589';
-  try {
-    const response = await fetch(`https://opendart.fss.or.kr/api/corpCode.json?crtfc_key=${API_KEY}`);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching company info:', error);
-    res.status(500).json({ error: 'Failed to fetch company info' });
-  }
 });
 
 // API Route to save data in DynamoDB
