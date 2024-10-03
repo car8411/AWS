@@ -4,15 +4,16 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb'); // AWS SDK v3
+const fetch = require('node-fetch');
 
 const app = express();
 
 // Initialize DynamoDB client (AWS SDK v3)
 const client = new DynamoDBClient({ region: 'us-east-1' });
 
-// CORS 설정
+// CORS 설정 (use origin with production domain in production)
 app.use(cors({
-  origin: '*',  // 실제 배포된 도메인으로 변경
+  origin: '*',
 }));
 
 // BodyParser 설정
@@ -38,8 +39,17 @@ app.get('/api', (req, res) => {
   res.send('Welcome to the home page!');
 });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the home page!');
+// API Route to fetch company info using OpenDART API
+app.get('/api/company-info', async (req, res) => {
+  const API_KEY = 'bad901f1cd2607e7f157075c025083589';
+  try {
+    const response = await fetch(`https://opendart.fss.or.kr/api/corpCode.json?crtfc_key=${API_KEY}`);
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching company info:', error);
+    res.status(500).json({ error: 'Failed to fetch company info' });
+  }
 });
 
 // API Route to save data in DynamoDB
